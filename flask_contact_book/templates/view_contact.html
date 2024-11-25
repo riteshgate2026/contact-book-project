@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Contacts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Contact Book</h1>
+        </header>
+
+        <!-- Side Menu -->
+        <nav class="side-menu">
+            <a href="/">Add Contact</a>
+            <a href="/view_contacts">View Contacts</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <h2>Saved Contacts</h2>
+            {% if contacts %}
+                <ul>
+                    {% for name, details in contacts.items() %}
+                        <li>
+                            <strong>{{ name }}</strong><br>
+                            Age: {{ details.age }}<br>
+                            Email: {{ details.email }}<br>
+                            Mobile: {{ details.mobile }}<br>
+                            <a href="/update_contact/{{ name }}">Update Contact</a>
+                            <a href="/delete_contact/{{ name }}" style="color:red; margin-left: 10px;">Delete Contact</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No contacts saved yet!</p>
+            {% endif %}
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>
+                Name: Ritesh<br>
+                Class: B.Tech CSE AIML<br>
+                Semester: 5th<br>
+                Project: Contact Book
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
